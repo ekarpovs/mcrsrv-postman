@@ -1,0 +1,1 @@
+# NodeJSPOSTMAN requests for base microservices set.

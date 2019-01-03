@@ -1,0 +1,689 @@
+{
+	"info": {
+		"_postman_id": "2d27af56-5578-4205-b80c-2d3818c07990",
+		"name": "Micro services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization Admin",
+			"item": [
+				{
+					"name": "Create Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Product Admin\",\r\n    \"description\": \"Product management\",\r\n    \"permissions\": [\r\n    \t{\r\n    \t\t\"path\": \"product/*\", \r\n    \t\t\"crud\": {\"c\": \"true\", \"r\": \"true\", \"u\": \"true\", \"d\": \"true\"}\r\n    \t}\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "{{uri-aa}}/role/create",
+							"host": [
+								"{{uri-aa}}"
+							],
+							"path": [
+								"role",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Get Permissions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"names\": [\"Account Admin\", \"Role Admin\"]\n}"
+						},
+						"url": {
+							"raw": "{{uri-a}}/permission",
+							"host": [
+								"{{uri-a}}"
+							],
+							"path": [
+								"permission"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account Admin",
+			"item": [
+				{
+					"name": "Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63cd7e0b-072a-4fd5-aa6f-0454dd5d6d98",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"password\": \"1234\", \"confirmPassword\": \"1234\", \"email\": \"u1@g.com\"}"
+						},
+						"url": {
+							"raw": "{{uri-ia}}/account/signup",
+							"host": [
+								"{{uri-ia}}"
+							],
+							"path": [
+								"account",
+								"signup"
+							]
+						},
+						"description": "Returns 200OK:\n{\n    \"id\": \"5bd5b50aa0ca75ead80b59a5\",\n}\n\nor 400 Bad Request:\n{\n\t\"id\": \"\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri-ia}}/account/list",
+							"host": [
+								"{{uri-ia}}"
+							],
+							"path": [
+								"account",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri-ia}}/account?id=5c1f645244617b001c9be8b0",
+							"host": [
+								"{{uri-ia}}"
+							],
+							"path": [
+								"account"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c1f645244617b001c9be8b0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri-ia}}/account?id=5c1f66dd718fca001c873f4e",
+							"host": [
+								"{{uri-ia}}"
+							],
+							"path": [
+								"account"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c1f66dd718fca001c873f4e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"5c1f30479b82da001c0c6104\",\n    \"email\": \"u2@g.com\",\n    \"password\": \"1234\",\n    \"createdAt\": \"2018-12-23T06:50:48.068Z\",\n    \"updatedAt\": \"2018-12-23T06:50:48.068Z\",\n    \"__v\": 0\n}\n"
+						},
+						"url": {
+							"raw": "{{uri-ia}}/account",
+							"host": [
+								"{{uri-ia}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Obtain Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63cd7e0b-072a-4fd5-aa6f-0454dd5d6d98",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var token = jsonData.accessToken;",
+									"",
+									"pm.environment.set(\"token\", token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"password\": \"1234\", \"email\": \"u1@g.com\"}"
+						},
+						"url": {
+							"raw": "{{uri-i}}/token/obtain",
+							"host": [
+								"{{uri-i}}"
+							],
+							"path": [
+								"token",
+								"obtain"
+							]
+						},
+						"description": "Returns 200OK:\n{\n    \"id\": \"5bd5b50aa0ca75ead80b59a5\",\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InUxQGcuY29tIiwicGFzc3dvcmQiOiIxMjM0IiwiaWF0IjoxNTQwODE3Mzc1LCJleHAiOjE1NDA4MjA5NzV9.N7spruGf1PZlYcID5KTBqQal4BAzKkYora04hPsg2fg\"\n}\n\nor 400 Bad Request:\n{\n\t\"id\": \"\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri-i}}/token/verify",
+							"host": [
+								"{{uri-i}}"
+							],
+							"path": [
+								"token",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Web App API gateway",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1eeb4efa-4c1b-4474-87e2-e763209fb3df",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var sid = jsonData.sessionId;",
+									"",
+									"pm.environment.set(\"sid\", sid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"password\": \"1234\", \"email\": \"u2@g.com\"}"
+						},
+						"url": {
+							"raw": "{{uri-web-gtw}}/login",
+							"host": [
+								"{{uri-web-gtw}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "Returns 200OK:\n{\n\n}\n\nor 400 Bad Request:\n{\n\t\"id\": \"\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri-web-gtw}}/account/list",
+							"host": [
+								"{{uri-web-gtw}}"
+							],
+							"path": [
+								"account",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63cd7e0b-072a-4fd5-aa6f-0454dd5d6d98",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var sid = jsonData.sessionId;",
+									"",
+									"pm.environment.set(\"token\", sid);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"sid\": \"lAX0i6Ygpw_Lw6gCnkrw6qYuMrLHVs-t\"}"
+						},
+						"url": {
+							"raw": "{{uri-web-gtw}}/logout",
+							"host": [
+								"{{uri-web-gtw}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Returns 200OK:\n{\n\t\"sid\": \"\"\n}\n\nor 400 Bad Request:\n{\n\t\"sid\": \"\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri-ia}}/account?id=5c1f645244617b001c9be8b0",
+							"host": [
+								"{{uri-ia}}"
+							],
+							"path": [
+								"account"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c1f645244617b001c9be8b0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"5c1f30479b82da001c0c6104\",\n    \"email\": \"u2@g.com\",\n    \"password\": \"$2a$10$tRybVwmLiRnvAalpIQXqgOlfteM4ntWEwb6TA92qrNcZcWLGxs2Su\",\n    \"createdAt\": \"2018-12-23T06:50:48.068Z\",\n    \"updatedAt\": \"2019-01-01T08:28:18.240Z\",\n    \"__v\": 0\n}\n\n"
+						},
+						"url": {
+							"raw": "{{uri-web-gtw}}/account",
+							"host": [
+								"{{uri-web-gtw}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri-ia}}/account?id=5c1f66dd718fca001c873f4e",
+							"host": [
+								"{{uri-ia}}"
+							],
+							"path": [
+								"account"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c1f66dd718fca001c873f4e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63cd7e0b-072a-4fd5-aa6f-0454dd5d6d98",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"password\": \"1234\", \"confirmPassword\": \"1234\", \"email\": \"u5@g.com\"}"
+						},
+						"url": {
+							"raw": "{{uri-web-gtw}}/account/signup",
+							"host": [
+								"{{uri-web-gtw}}"
+							],
+							"path": [
+								"account",
+								"signup"
+							]
+						},
+						"description": "Returns 200OK:\n{\n    \"id\": \"5bd5b50aa0ca75ead80b59a5\",\n}\n\nor 400 Bad Request:\n{\n\t\"id\": \"\"\n}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Audit",
+			"item": []
+		},
+		{
+			"name": "Logger",
+			"item": []
+		},
+		{
+			"name": "Audit Admin",
+			"item": []
+		},
+		{
+			"name": "Registry",
+			"item": []
+		}
+	]
+}
